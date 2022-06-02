@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { UserService } from '../user/user.service';
-import { User } from '../entities/user.entity';
+import { User } from '../user/user.entity';
 import { SignUp } from './dto/sign-up.dto';
 
 @Injectable()
