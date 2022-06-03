@@ -60,7 +60,6 @@ export class AuthService {
     const payload = {
       sub: user.email,
     };
-
     return this.jwtService.sign(payload);
   }
 }
