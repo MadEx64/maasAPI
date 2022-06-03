@@ -1,5 +1,6 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
@@ -11,6 +12,16 @@ export function appConfig(app: INestApplication): INestApplication {
 
   const configService = app.get(ConfigService);
   const secret = configService.get('APP_SECRET');
+
+  //Swagger config
+  const config = new DocumentBuilder()
+    .setTitle('MaaS API')
+    .setDescription('The MaaS API description')
+    .setVersion('1.0')
+    .addTag('maas')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   app.use(cookieParser(secret));
 
